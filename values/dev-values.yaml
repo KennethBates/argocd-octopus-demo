@@ -1,3 +1,3 @@
-﻿image:
+image:
   repository: nginx
-  tag: "1.27.0"
+  tag: "1.27.3"
