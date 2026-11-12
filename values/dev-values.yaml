@@ -1,4 +1,4 @@
 image:
   repository: nginx
   tag: "v1.27.3"
-replicaCount: 2
+replicaCount: 5
