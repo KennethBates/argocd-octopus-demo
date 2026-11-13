@@ -17,7 +17,7 @@ step "update-argo-cd-application-image-tags" {
 
         container {
             feed = "dockerhub"
-            image = "octopusdeploy/worker-tools:6.6.7-ubuntu.24.04"
+            image = "octopusdeploy/worker-tools:6.6.8-ubuntu.24.04"
         }
 
         packages "name-required" {
