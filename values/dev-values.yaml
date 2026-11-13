@@ -1,4 +1,4 @@
 image:
   repository: ghcr.io/kennethbates/demo-app
-  tag: "1.0.1794536769"
+  tag: "1.0.1794537371"
 replicaCount: 10
