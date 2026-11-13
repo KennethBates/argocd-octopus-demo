@@ -5,7 +5,7 @@ step "update-argo-cd-application-image-tags" {
         action_type = "Octopus.ArgoCDUpdateImageTags"
         properties = {
             Octopus.Action.ArgoCD.CommitMessageSummary = "Octopus Deploy updated image versions in release #{Octopus.Release.Number}"
-            Octopus.Action.ArgoCD.CommitMethod = "DirectCommit"
+            Octopus.Action.ArgoCD.CommitMethod = "PullRequest"
             Octopus.Action.ArgoCD.CommitWhenStale = "False"
             Octopus.Action.ArgoCD.PushRetryAttempts = "2"
             Octopus.Action.ArgoCD.StepVerification.Method = "ArgoCDApplicationHealthy"
