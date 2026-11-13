@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: ghcr.io/kennethbates/demo-app:1.0.1794463372
+          image: ghcr.io/kennethbates/demo-app:1.0.1794528041
           ports:
             - containerPort: 80
 ---
