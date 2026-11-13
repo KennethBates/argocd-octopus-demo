@@ -1,0 +1,34 @@
+step "update-argo-cd-application-image-tags" {
+    name = "Update Argo CD Application Image Tags"
+
+    action {
+        action_type = "Octopus.ArgoCDUpdateImageTags"
+        properties = {
+            Octopus.Action.ArgoCD.CommitMessageSummary = "Octopus Deploy updated image versions in release #{Octopus.Release.Number}"
+            Octopus.Action.ArgoCD.CommitMethod = "DirectCommit"
+            Octopus.Action.ArgoCD.CommitWhenStale = "False"
+            Octopus.Action.ArgoCD.PushRetryAttempts = "2"
+            Octopus.Action.ArgoCD.StepVerification.Method = "ArgoCDApplicationHealthy"
+            Octopus.Action.ArgoCD.StepVerification.Timeout = "180"
+            Octopus.Action.ArgoCD.Sync.Mode = "AllEnvironments"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "dockerhub"
+            image = "octopusdeploy/worker-tools:6.6.7-ubuntu.24.04"
+        }
+
+        packages "name-required" {
+            acquisition_location = "NotAcquired"
+            feed = "ghcr"
+            package_id = "kennethbates/demo-app"
+            properties = {
+                Extract = "False"
+                HelmReplacementPath = "image.tag"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
