@@ -48,7 +48,7 @@ step "run-a-script" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "local-ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
             feed = "dockerhub"
