@@ -33,3 +33,26 @@ step "update-argo-cd-application-image-tags" {
         }
     }
 }
+
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $url = "http://localhost:8081"   # or your tunnel URL
+                Write-Highlight "App deployed: [open index.html]($url)"
+                Write-Highlight "Release #{Octopus.Release.Number} · [this deployment](#{Octopus.Web.ServerUri}#{Octopus.Web.DeploymentLink})"
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "local-ubuntu"
+
+        container {
+            feed = "dockerhub"
+            image = "octopusdeploy/worker-tools:6.6.8-ubuntu.24.04"
+        }
+    }
+}
